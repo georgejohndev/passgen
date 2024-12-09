@@ -31,7 +31,7 @@ span.form-input>input {
   font-size: 1.3rem;
   width: 80%;
   padding: 10px;
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 span#password {
@@ -65,4 +65,73 @@ input#generatedPassword {
   font-size: 15px;
   top: 498px;
   left: 586px;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  div#form {
+    width: 80%; /* Make the form wider on smaller screens */
+  }
+
+  span {
+    font-size: 1.2rem; /* Slightly smaller font size for mobile */
+    flex-direction: column; /* Stack the input elements vertically */
+    align-items: flex-start; /* Align inputs to the left */
+  }
+
+  span.form-input>input {
+    font-size: 1.2rem; /* Adjust input font size */
+    width: 100%; /* Full width input */
+    padding: 12px; /* Slightly more padding for better touch interaction */
+  }
+
+  span#password {
+    margin: 30px 5px; /* Reduce margin for smaller screens */
+  }
+
+  input#generatedPassword {
+    font-size: 1.2rem; /* Adjust font size for readability */
+    padding: 12px 0; /* Adjust padding for better touch interaction */
+    margin: 30px 0; /* Reduce margin for smaller screens */
+  }
+
+  #customTooltip {
+    font-size: 14px; /* Reduce font size for mobile */
+    top: auto; /* Avoid fixed positioning issues */
+    left: auto;
+    bottom: 80px; /* Position it above the input field */
+    right: 10px; /* Ensure it is not too far off the screen */
+  }
+}
+
+/* Extra Small Screens (Mobile) */
+@media (max-width: 480px) {
+  body {
+    padding: 0 10px; /* Reduce horizontal padding */
+  }
+
+  div#form {
+    width: 100%; /* Make the form full width on very small screens */
+  }
+
+  span {
+    font-size: 1rem; /* Further reduce font size */
+  }
+
+  span.form-input>input {
+    font-size: 1.1rem; /* Adjust input font size */
+    padding: 10px; /* Reduce padding slightly */
+  }
+
+  input#generatedPassword {
+    font-size: 1.1rem; /* Smaller font for mobile */
+    padding: 10px 0; /* Reduce padding */
+    margin: 20px 0; /* Smaller margin */
+  }
+
+  #customTooltip {
+    font-size: 13px; /* Smaller tooltip font */
+    bottom: 60px; /* Position above the input */
+    right: 5px; /* Adjust positioning for very small screens */
+  }
 }
