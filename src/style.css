@@ -13,6 +13,15 @@ body {
 div#form {
   width: 40%;
   margin: auto;
+  background-color: #4d4d4d;
+  padding: 20px;
+  border-radius: 10px
+}
+
+#header {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 0;
 }
 
 span {
@@ -53,7 +62,7 @@ input#generatedPassword {
 
 #customTooltip {
   margin-top: 50px;
-  background-color: #312f2f;
+  background-color: #4d4d4d;
   color: rgb(255, 255, 255);
   padding: 5px;
   border-radius: 4px;
