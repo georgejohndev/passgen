@@ -58,6 +58,7 @@ input#generatedPassword {
   color: rgb(18, 0, 255);
   cursor: pointer;
   text-align: center;
+  outline: none;
 }
 
 #customTooltip {
