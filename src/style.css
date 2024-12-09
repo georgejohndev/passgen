@@ -54,3 +54,15 @@ input#generatedPassword {
   cursor: pointer;
   text-align: center;
 }
+
+#customTooltip {
+  display: block;
+  position: absolute;
+  background-color: rgb(51, 51, 51);
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 15px;
+  top: 498px;
+  left: 586px;
+}
