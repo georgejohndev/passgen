@@ -3,6 +3,7 @@ const generatedPasswordInput = document.getElementById('generatedPassword');
 const passwordInput = document.getElementById('text');
 const saltInput = document.getElementById('salt');
 const customTooltip = document.getElementById('customTooltip');
+const copiedTooltip = document.getElementById('copiedTooltip');
 
 // Add click event listener for copying
 generatedPasswordInput.addEventListener('click', async function () {
@@ -12,44 +13,42 @@ generatedPasswordInput.addEventListener('click', async function () {
             await navigator.clipboard.writeText(this.value);
 
             // Show visual feedback as a tooltip
-            const tooltip = document.createElement('div');
-            tooltip.textContent = 'Copied!';
-            tooltip.style.position = 'absolute';
-            tooltip.style.backgroundColor = '#4CAF50';
-            tooltip.style.color = '#fff';
-            tooltip.style.padding = '5px 10px';
-            tooltip.style.borderRadius = '4px';
-            tooltip.style.top = `${this.offsetTop - 30}px`; // Position above the input
-            tooltip.style.left = `${this.offsetLeft}px`;
+            copiedTooltip.textContent = 'Copied!';
+            copiedTooltip.style.backgroundColor = '#4CAF50';
+            copiedTooltip.style.color = '#fff';
+            copiedTooltip.style.padding = '5px 10px';
+            copiedTooltip.style.borderRadius = '4px';
+            // tooltip.style.top = `${this.offsetTop - 30}px`; // Position above the input
+            // tooltip.style.left = `${this.offsetLeft}px`;
 
             customTooltip.style.display = 'none';
-            document.body.appendChild(tooltip);
+            copiedTooltip.style.display = 'block';
 
             // Remove the tooltip after 1.5 seconds
             setTimeout(() => {
-                tooltip.remove();
+                copiedTooltip.style.display = 'none';
                 customTooltip.style.display = 'block';
             }, 1500);
         } catch (err) {
             console.error('Failed to copy text: ', err);
 
             // Show error tooltip
-            const errorTooltip = document.createElement('div');
-            errorTooltip.textContent = 'Failed to copy';
-            errorTooltip.style.position = 'absolute';
-            errorTooltip.style.backgroundColor = '#F44336';
-            errorTooltip.style.color = '#fff';
-            errorTooltip.style.padding = '5px 10px';
-            errorTooltip.style.borderRadius = '4px';
-            errorTooltip.style.top = `${this.offsetTop - 30}px`; // Position above the input
-            errorTooltip.style.left = `${this.offsetLeft}px`;
+            
+            copiedTooltip.textContent = 'Failed to copy';
+            copiedTooltip.style.position = 'absolute';
+            copiedTooltip.style.backgroundColor = '#F44336';
+            copiedTooltip.style.color = '#fff';
+            copiedTooltip.style.padding = '5px 10px';
+            copiedTooltip.style.borderRadius = '4px';
+            copiedTooltip.style.top = `${this.offsetTop - 30}px`; // Position above the input
+            copiedTooltip.style.left = `${this.offsetLeft}px`;
             customTooltip.style.display = 'none';
-            document.body.appendChild(errorTooltip);
+            copiedTooltip.style.display = 'block';
 
             // Remove error tooltip after 1.5 seconds
             setTimeout(() => {
                 customTooltip.style.display = 'block';
-                errorTooltip.remove();
+                copiedTooltip.style.display = 'none';
             }, 1500);
         }
     }

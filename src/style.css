@@ -56,7 +56,17 @@ input#generatedPassword {
   background-color: rgb(51, 51, 51);
   color: rgb(255, 255, 255);
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 4px;
+  font-size: 15px;
+  width: -webkit-fill-available;
+}
+#copiedTooltip {
+  display: none;
+  margin-top: 50px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
   font-size: 15px;
   width: -webkit-fill-available;
 }
@@ -65,18 +75,18 @@ input#generatedPassword {
 @media (max-width: 768px) {
   div#form {
     width: -webkit-fill-available; /* Form takes full width on smaller screens */
-    padding: 5px;
+    padding: 15px;
   }
 
   span {
-    font-size: 1.2rem;
+    font-size: medium;
     flex-direction: column;
     align-items: flex-start;
     width: -webkit-fill-available;
   }
 
   span.form-input > input {
-    font-size: 1.2rem;
+    font-size: medium;
     padding: 12px;
     width: -webkit-fill-available;
   }
@@ -86,12 +96,17 @@ input#generatedPassword {
   }
 
   input#generatedPassword {
-    font-size: 1.2rem;
+    font-size: medium;
     padding: 12px 0;
     width: -webkit-fill-available;
   }
 
   #customTooltip {
+    font-size: 14px;
+    margin-top: 30px;
+    width: -webkit-fill-available;
+  }
+  #copiedTooltip {
     font-size: 14px;
     margin-top: 30px;
     width: -webkit-fill-available;
