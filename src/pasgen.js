@@ -1,4 +1,4 @@
-// Function to securely derive a password from text and salt
+// Function to securely derive a password from text and salt.
 async function derivePassword(text="", salt="") {
     const encoder = new TextEncoder();
   
