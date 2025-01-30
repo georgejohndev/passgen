@@ -61,6 +61,14 @@ input#generatedPassword {
   outline: none;
 }
 
+input#generatedPassword:hover {
+  background-color: rgb(228, 255, 130); /* Light blue when hovered */
+}
+
+input:focus {
+  outline: 3px solid #fcbe24; /* Highlighted focus with the yellow accent */
+}
+
 #customTooltip {
   margin-top: 50px;
   background-color: #4d4d4d;

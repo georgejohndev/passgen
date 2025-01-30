@@ -55,13 +55,22 @@ generatedPasswordInput.addEventListener('click', async function () {
 });
 
 passwordInput.addEventListener('input', async function () {
-    const derivedPassword = await derivePassword(this.value, saltInput.value);
-    generatedPasswordInput.value = derivedPassword;
+    if (this.value && (!saltInput.value || saltInput.value)) {
+        const derivedPassword = await derivePassword(this.value, saltInput.value);
+        generatedPasswordInput.value = derivedPassword;
+    }
+    else{
+        generatedPasswordInput.value = '';
+    }
 });
 
 saltInput.addEventListener('input', async function () {
-    const derivedPassword = await derivePassword(passwordInput.value, this.value);
-    generatedPasswordInput.value = derivedPassword;
+    if(this.value && passwordInput.value){   
+        const derivedPassword = await derivePassword(passwordInput.value, this.value);
+        generatedPasswordInput.value = derivedPassword;
+    } else {
+        generatedPasswordInput.value = '';
+    }
 });
 
 
