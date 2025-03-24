@@ -1,30 +1,46 @@
-async function derivePassword(text = "", salt = "") {
-    const encoder = new TextEncoder();
-  
-    // Convert text and salt to ArrayBuffer
-    const textBuffer = encoder.encode(text);
-    const saltBuffer = encoder.encode(salt);
-  
-    // Import text as a raw key for PBKDF2
-    const keyMaterial = await crypto.subtle.importKey(
-        'raw', textBuffer, { name: 'PBKDF2' }, false, ['deriveBits']
-    );
+// Get elements
+const generatedPasswordInput = document.getElementById('generatedPassword');
+const passwordInput = document.getElementById('text');
+const saltInput = document.getElementById('salt');
+const customTooltip = document.getElementById('customTooltip');
+const copiedTooltip = document.getElementById('copiedTooltip');
 
-    // Use PBKDF2 with SHA-256 to derive a strong password
-    const keyBits = await crypto.subtle.deriveBits(
-        {
-            name: 'PBKDF2',
-            salt: saltBuffer,
-            iterations: 100000, // Adjust as needed for security vs. performance
-            hash: 'SHA-256',
-        },
-        keyMaterial,
-        256 // 256 bits = 32 bytes
-    );
+// Function to show tooltip with success or error state
+function showTooltip(message, isSuccess = true) {
+    copiedTooltip.textContent = message;
+    
+    // Toggle classes for styling
+    copiedTooltip.classList.remove("success", "error");
+    copiedTooltip.classList.add(isSuccess ? "success" : "error", "show");
+    customTooltip.classList.remove("show");
 
-    // Convert derived bits to Base64
-    return btoa(String.fromCharCode(...new Uint8Array(keyBits)));
+    setTimeout(() => {
+        copiedTooltip.classList.remove("show");
+        customTooltip.classList.add("show");
+    }, 1500);
 }
 
-// Example usage
-derivePassword("mypassword", "mysalt").then(console.log);
+// Click event to copy password to clipboard
+generatedPasswordInput.addEventListener('click', async function () {
+    if (this.value) {
+        try {
+            await navigator.clipboard.writeText(this.value);
+            showTooltip('Copied!', true);
+        } catch (err) {
+            console.error('Failed to copy text:', err);
+            showTooltip('Failed to copy', false);
+        }
+    }
+});
+
+// Function to update the derived password
+async function updatePassword() {
+    if (passwordInput.value || saltInput.value) {
+        const derivedPassword = await derivePassword(passwordInput.value, saltInput.value);
+        generatedPasswordInput.value = derivedPassword;
+    }
+}
+
+// Listen for changes on password or salt inputs
+passwordInput.addEventListener('input', updatePassword);
+saltInput.addEventListener('input', updatePassword);
