@@ -36,10 +36,13 @@ generatedPasswordInput.addEventListener('click', async function () {
 
 // Function to update the derived password
 async function updatePassword() {
-    if (passwordInput.value || saltInput.value) {
-        const derivedPassword = await derivePassword(passwordInput.value, saltInput.value);
-        generatedPasswordInput.value = derivedPassword;
+    if (!passwordInput.value) {
+        generatedPasswordInput.value = ""; // Ensure it's empty when passwordInput is empty
+        return;
     }
+    
+    const derivedPassword = await derivePassword(passwordInput.value, saltInput.value);
+    generatedPasswordInput.value = derivedPassword;
 }
 
 // Listen for changes on password or salt inputs
